@@ -14,7 +14,17 @@
   <%= render 'layouts/top_nav' %>
 
   <main class="container">
-    <%= yield %>
+  
+  <% if @empty_cart %>
+    <div class=alert>
+      <p>It looks like you haven't added anything to your cart yet.</p>
+      <p><%= link_to 'Jungle Page', root_path %></p>
+    </div>
+  
+    <% else %>
+      <%= yield %>
+  <%end%>
+
   </main>
 
   <%= yield :end_of_body %>

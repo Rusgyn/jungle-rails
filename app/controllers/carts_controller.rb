@@ -1,7 +1,11 @@
 class CartsController < ApplicationController
 
   def show
+    @cart = cart
+    Rails.logger.debug "Cart contents: #{@cart.inspect}"  # Add this line here
+    @empty_cart = @cart.size == 0
   end
+  
 
   def add_item
     product_id = params[:product_id].to_s
