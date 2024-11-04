@@ -144,11 +144,7 @@ GEM
       money (~> 6.13)
       railties (>= 3.0)
     msgpack (1.5.1)
-<<<<<<< HEAD
     nio4r (2.5.9)
-=======
-    nio4r (2.7.4)
->>>>>>> feature/sold-out-badge
     nokogiri (1.13.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.13.4-x86_64-linux)
