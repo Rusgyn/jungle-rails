@@ -1,14 +1,10 @@
 class CartsController < ApplicationController
 
   def show
-    respond_to do |format|
-      format.json do
-        render json: { success: true, wat: 'aaff' }
-      end
-
-      format.html {}
-    end
+    @cart = cart
+    @empty_cart = @cart.size == 0
   end
+  
 
   def add_item
     product_id = params[:product_id].to_s

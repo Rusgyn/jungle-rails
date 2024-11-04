@@ -30,6 +30,19 @@ main section.categories-show {
         border-radius: 0.25rem;
       }
 
+      .soldout_add_btn {
+        min-width: 110px;
+        border-radius: 0.25em;
+        color: white;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+
+        border-radius: 0.25em;
+        background-color: rgba(57, 202, 88, 0.7);
+        border: 1px solid rgba(93, 208, 118, 0.7);
+      }
+
       a {
         text-decoration: none;
       }
@@ -50,6 +63,10 @@ main section.categories-show {
         }
 
         button {
+          background: white;
+          color: rgba(0, 130, 29, 0.7);
+        }
+        .soldout_add_btn {
           background: white;
           color: rgba(0, 130, 29, 0.7);
         }
