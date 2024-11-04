@@ -5,9 +5,7 @@ class Admin::ProductsController < ApplicationController
                                if: -> { ENV["HTTP_BASIC_PASSWORD"].present? }
 
   def index
-
       @products = Product.order(id: :desc).all
-
   end
 
   def new
