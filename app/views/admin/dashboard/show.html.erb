@@ -1,33 +1,35 @@
-
 <section class="admin-products-index">
-
   <header class="page-header">
-  <h1>Admin &raquo; Dashboard</h1>
+    <h1 class="text-center mb-4">Admin &raquo; Dashboard</h1>
   </header>
 
-  <div class="panel panel-default products">
+  <div class="container">
+    <div class="row">
+      <!-- Products Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-header bg-primary text-white">
+            Available Products
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-4"><%= @product_count %></h5>
+            <p class="card-text">Total number of products in the database.</p>
+          </div>
+        </div>
+      </div>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Database List</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Available product</td>
-          <td><%= @product_count %></td>
-        </tr>
-        <tr>
-          <td>Available category</td>
-          <td><%= @category_count %></td>
-        </tr>
-      </tbody>
-    </table>
-
+      <!-- Categories Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-header bg-success text-white">
+            Available Categories
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-4"><%= @category_count %></h5>
+            <p class="card-text">Total number of categories in the database.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
 </section>
