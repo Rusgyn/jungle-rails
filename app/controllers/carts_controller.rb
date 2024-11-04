@@ -1,6 +1,13 @@
 class CartsController < ApplicationController
 
   def show
+    respond_to do |format|
+      format.json do
+        render json: { success: true, wat: 'aaff' }
+      end
+
+      format.html {}
+    end
   end
 
   def add_item
