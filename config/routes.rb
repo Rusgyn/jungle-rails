@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-  get 'users/new', to: 'users#new'
-  get 'users/create', to: 'users#create'
-  get 'users/update', to: 'users#update'
+  # get 'users/index'
+  # get 'users/new', to: 'users#new'
+  # get 'users/create', to: 'users#create'
+  
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+  get '/update', to: 'users#update'
+
   get 'about', to: 'about#index'
   
   root to: 'products#index'

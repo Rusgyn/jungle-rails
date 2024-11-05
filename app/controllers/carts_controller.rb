@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
 
+  before_action :authorize
+
   def show
     @cart = cart
     @empty_cart = @cart.size == 0
