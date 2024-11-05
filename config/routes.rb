@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
   get 'users/index'
-  get 'users/new'
-  get 'users/create'
-  get 'users/update'
+  get 'users/new', to: 'users#new'
+  get 'users/create', to: 'users#create'
+  get 'users/update', to: 'users#update'
   get 'about', to: 'about#index'
   
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
+  resources :users, only: [:index, :new, :create, :update]
 
   resource :cart, only: [:show] do
     post   :add_item
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
   end
+
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
