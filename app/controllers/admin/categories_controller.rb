@@ -1,6 +1,6 @@
 class Admin::CategoriesController < ApplicationController
 
-  before_action :authenticate_admin!
+  before_action :authenticate_admin
 
   def index
     @categories = Category.order(id: :desc).all
@@ -30,5 +30,17 @@ class Admin::CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-  
+
+  def authenticate_admin
+
+    # Remove HTTP_AUTHORIZATION header
+    request.env.delete("HTTP_AUTHORIZATION")
+
+    if ENV["HTTP_BASIC_PASSWORD"].present?
+      authenticate_or_request_with_http_basic do |username, password|
+        username == ENV['HTTP_BASIC_USER'] && password == ENV['HTTP_BASIC_PASSWORD']
+      end
+    end
+  end
+
 end
