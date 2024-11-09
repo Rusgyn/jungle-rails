@@ -7,7 +7,8 @@ describe 'User Validation' do
       first_name: 'John',
       last_name: 'Doe',
       email: 'John_Doe@gamil.com',
-      password: "123a"
+      password: "123a",
+      password_confirmation: "123a"
     )
   end
 
@@ -31,6 +32,20 @@ describe 'User Validation' do
         user.public_send("#{field}=", nil)
         expect(user.save).to be false
       end
+    end
+  end
+
+  context "when password and password_confirmation match" do
+    it "should return valid" do
+      user.password == user.password_confirmation
+      expect(user.save).to be true
+    end
+  end
+
+  context "when password and password_confirmation does match" do
+    it "should return invalid" do
+      user.password_confirmation = "not_same"
+      expect(user.save).to be false
     end
   end
 
