@@ -40,6 +40,14 @@ RSpec.describe Product, type: :model do
       end
     end
 
+    context "when category is nil" do
+      it "should be invalid" do
+        product.category= nil
+        expect(product.save).to be false
+      end
+    end
+
+    # This test below will do test of all four attributes
     # %i(name price_cents quantity category).each do |field|
     #   context "when #{field} is nil" do
     #     it "should be invalid" do
