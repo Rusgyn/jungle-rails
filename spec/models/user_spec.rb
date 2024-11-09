@@ -10,10 +10,17 @@ describe 'User Validation' do
       password: "123a"
     )
   end
-  
+
   context "when all required fields are present" do
     it "should be valid" do
       expect(user.save).to be true
+    end
+  end
+
+  context "when first_name is nil" do
+    it "should be invalid" do
+      user.first_name = nil
+      expect(user.save).to be false
     end
   end
 
