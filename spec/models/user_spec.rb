@@ -7,8 +7,8 @@ describe 'User Validation' do
       first_name: 'John',
       last_name: 'Doe',
       email: 'John_Doe@gmail.com',
-      password: "123a",
-      password_confirmation: "123a"
+      password: "123abc",
+      password_confirmation: "123abc"
     )
   end
 
@@ -56,8 +56,8 @@ describe 'User Validation' do
         first_name: 'Jane',
         last_name: 'Doe',
         email: 'John_Doe@gmail.com',
-        password: "123a",
-        password_confirmation: "123a"
+        password: "123abc",
+        password_confirmation: "123abc"
       )
       expect(user_with_duplicate_email.valid?).to be false
       expect(user_with_duplicate_email.errors[:email]).to include("has already been taken")
@@ -71,11 +71,30 @@ describe 'User Validation' do
         first_name: 'Jane',
         last_name: 'Doe',
         email: 'JOHN_DOE@gmail.com',
-        password: "123a",
-        password_confirmation: "123a"
+        password: "123abc",
+        password_confirmation: "123abc"
       )
       expect(user_with_duplicate_email.valid?).to be false
       expect(user_with_duplicate_email.errors[:email]).to include("has already been taken")
+    end
+  end
+
+  context "when password is short" do
+    it "should be invalid" do
+      user.password = "123a"
+      user.password_confirmation = "123a"
+
+      expect(user.valid?).to be false
+      expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
+    end
+  end
+
+  context "when password is long enough" do
+    it "should return valid" do
+      user.password = "123xyz"
+      user.password_confirmation = "123xyz"
+
+      expect(user.valid?).to be true
     end
   end
 
