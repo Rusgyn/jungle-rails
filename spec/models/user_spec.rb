@@ -24,5 +24,14 @@ describe 'User Validation' do
     end
   end
 
+  # Test the remaining field using loop each method.
+  %i(last_name email password).each do |field|
+    context "When #{field} is nil" do
+      it "should be invalid" do
+        user.public_send("#{field}=", nil)
+        expect(user.save).to be false
+      end
+    end
+  end
 
 end
