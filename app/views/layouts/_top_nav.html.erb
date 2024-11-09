@@ -51,7 +51,7 @@
       
         <div class="navbar-brand">
           <% if current_user %>
-          Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout', style: 'color: yellow; font-family: Arial, sans-serif;' %>
+            Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout', style: 'color: yellow; font-family: Arial, sans-serif;' %>
           <% else %>
             <%= link_to 'Sign-up', '/signup', style: 'color: white; font-family: Arial, sans-serif;' %> </br>
           <% end %>

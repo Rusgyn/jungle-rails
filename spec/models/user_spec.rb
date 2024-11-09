@@ -6,7 +6,7 @@ describe 'User Validation' do
     User.new(
       first_name: 'John',
       last_name: 'Doe',
-      email: 'John_Doe@gamil.com',
+      email: 'John_Doe@gmail.com',
       password: "123a",
       password_confirmation: "123a"
     )
@@ -46,6 +46,36 @@ describe 'User Validation' do
     it "should return invalid" do
       user.password_confirmation = "not_same"
       expect(user.save).to be false
+    end
+  end
+
+  context "when email is already registered" do
+    it "does not allow the user to register again with the same email" do
+      user.save
+      user_with_duplicate_email = User.new(
+        first_name: 'Jane',
+        last_name: 'Doe',
+        email: 'John_Doe@gmail.com',
+        password: "123a",
+        password_confirmation: "123a"
+      )
+      expect(user_with_duplicate_email.valid?).to be false
+      expect(user_with_duplicate_email.errors[:email]).to include("has already been taken")
+    end
+  end
+
+  context "when email is already registered. Case sensitivity." do
+    it "does not allow the user to register again with the same email, case sensitive" do
+      user.save
+      user_with_duplicate_email = User.new(
+        first_name: 'Jane',
+        last_name: 'Doe',
+        email: 'JOHN_DOE@gmail.com',
+        password: "123a",
+        password_confirmation: "123a"
+      )
+      expect(user_with_duplicate_email.valid?).to be false
+      expect(user_with_duplicate_email.errors[:email]).to include("has already been taken")
     end
   end
 
