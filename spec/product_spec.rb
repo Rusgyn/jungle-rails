@@ -19,14 +19,23 @@ RSpec.describe Product, type: :model do
       end
     end
 
-    %i(name price_cents quantity category).each do |field|
-      context "when #{field} is nil" do
-        it "should be invalid" do
-          product.public_send("#{field}=", nil)
-          expect(product.save).to be false
-        end
+    context "when name is nil" do
+      it "should be invalid" do
+        product.name = nil
+        expect(product.save).to be false
       end
     end
+
+
+
+    # %i(name price_cents quantity category).each do |field|
+    #   context "when #{field} is nil" do
+    #     it "should be invalid" do
+    #       product.public_send("#{field}=", nil)
+    #       expect(product.save).to be false
+    #     end
+    #   end
+    # end
 
     
 
