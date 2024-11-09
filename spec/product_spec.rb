@@ -26,6 +26,12 @@ RSpec.describe Product, type: :model do
       end
     end
 
+    context "when price is nil" do
+      it "should be invalid" do
+        product.price_cents = nil
+        expect(product.save).to be false
+      end
+    end
 
 
     # %i(name price_cents quantity category).each do |field|
@@ -36,9 +42,6 @@ RSpec.describe Product, type: :model do
     #     end
     #   end
     # end
-
-    
-
 
   end
 end
