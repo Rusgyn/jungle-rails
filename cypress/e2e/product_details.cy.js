@@ -26,4 +26,23 @@ describe("The Jungle Rails", () => {
     cy.contains('Add').should('exist')
   });
 
+  it("should only show the chosen product", () => {
+    cy.visit('/');
+    cy.get(".products article").should("be.visible");
+    cy.get("img").eq(0).click()
+    
+    cy.url().then((url) => {
+      const first_product = url;
+
+      cy.visit("/");
+      cy.get("img").last().click();
+
+      cy.url().should('not.equal', first_product);
+      cy.url().should('include', '/products');
+      cy.get(".quantity").should('be.visible')
+      cy.contains('Add').should('exist')
+    })
+
+  })
+
 });
