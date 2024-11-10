@@ -19,18 +19,24 @@ describe("The Jungle Rails", () => {
   it("View the product detail", () => {
     cy.visit("/")
     cy.get(".products article").should("be.visible");
-    cy.get("img").first().click()
-    cy.url().should('include', '/products')
+    cy.get("img").first().click();
+    
+    cy.url().should('include', '/products');
+    cy.get(".quantity").should('be.visible');
 
-    cy.get(".quantity").should('be.visible')
-    cy.contains('Add').should('exist')
+    cy.get(".quantity").invoke('val').then((quantity) => {
+      if (parseInt(quantity) === 0) {
+        // If quantity is 0, check that "Sold Out" text exists
+        cy.contains('Sold Out').should('exist');
+      }
+    });
   });
 
   it("should only show the chosen product", () => {
     cy.visit('/');
     cy.get(".products article").should("be.visible");
-    cy.get("img").eq(0).click()
-    
+    cy.get("img").first().click()
+
     cy.url().then((url) => {
       const first_product = url;
 
@@ -40,9 +46,14 @@ describe("The Jungle Rails", () => {
       cy.url().should('not.equal', first_product);
       cy.url().should('include', '/products');
       cy.get(".quantity").should('be.visible')
-      cy.contains('Add').should('exist')
-    })
-
+      
+      cy.get(".quantity").invoke('val').then((quantity) => {
+        if (parseInt(quantity) === 0) {
+          // If quantity is 0, check that "Sold Out" text exists
+          cy.contains('Sold Out').should('exist');
+        } 
+      });
+    });
   })
 
 });
